@@ -14,10 +14,12 @@ class ViewController: UIViewController {
     
     //Outlets
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var addressLabel: UILabel!
     
     //Properties
     let locationManager = CLLocationManager()
     let regionInMeters:Double = 10000
+    var previousLocation : CLLocation?
 
     
     override func viewDidLoad() {
@@ -57,9 +59,7 @@ class ViewController: UIViewController {
         
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
-            mapView.showsUserLocation = true
-            centerViewOnUserLocation()
-            break
+            startTrackingUserLocation()
         case .denied:
             //mostrar um alerta mostrando como autoriza
             break
@@ -72,13 +72,28 @@ class ViewController: UIViewController {
             break
         }
     }
+    func startTrackingUserLocation(){
+        mapView.showsUserLocation = true
+        centerViewOnUserLocation()
+        locationManager.startUpdatingLocation()
+        previousLocation = getCenterLocation(for: mapView)
+    }
+    
+    func getCenterLocation(for mapView: MKMapView)-> CLLocation{
+      
+        let latitude = mapView.centerCoordinate.latitude
+        let longitude = mapView.centerCoordinate.longitude
+        
+        return CLLocation(latitude: latitude, longitude: longitude)
+        
+    }
 
 }
 
 extension ViewController:CLLocationManagerDelegate{
     
     //Toda vez que a localização do usuário atualiza, este método ajusta o mapView de acordo, como você mostra a localização do usuário em um mapa e faz a atualização quando ela muda.
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+  /*  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         guard let location = locations.last else {return}
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
@@ -86,9 +101,43 @@ extension ViewController:CLLocationManagerDelegate{
         mapView.setRegion(region, animated: true)
         
         
-    }
+    }*/
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
        checkLocationAuthorization()
+    }
+}
+
+extension ViewController:MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        let center = getCenterLocation(for: mapView)
+        let geoCoder = CLGeocoder()
+        
+        guard let previousLocation = self.previousLocation else{return}
+        
+        guard center.distance(from: previousLocation) > 50 else{return}
+        self.previousLocation = center
+        
+        geoCoder.reverseGeocodeLocation(center) { [weak self](placemark, error) in
+            
+            guard let self = self else{return}
+            
+            if let _ = error {
+                //Se ocorrer um erro , mostrar um alerta informando o usuario
+                return
+            }
+            guard let placemark = placemark?.first else{
+                //Mostrar um alerta avisando o usuário
+                return
+            }
+            let streetNumber = placemark.subThoroughfare ?? ""
+            let streetName = placemark.thoroughfare ?? ""
+            
+            DispatchQueue.main.async {
+                self.addressLabel.text = "\(streetName),\(streetNumber)"
+            }
+        }
     }
 }

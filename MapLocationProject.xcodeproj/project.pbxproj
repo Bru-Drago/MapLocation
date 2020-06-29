@@ -13,6 +13,8 @@
 		F5D7B02A24AA2CFF00BA1C34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5D7B02824AA2CFF00BA1C34 /* Main.storyboard */; };
 		F5D7B02C24AA2D0A00BA1C34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5D7B02B24AA2D0A00BA1C34 /* Assets.xcassets */; };
 		F5D7B02F24AA2D0A00BA1C34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5D7B02D24AA2D0A00BA1C34 /* LaunchScreen.storyboard */; };
+		F5D7B03924AA5E9400BA1C34 /* Pin_Map.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D7B03824AA5E9300BA1C34 /* Pin_Map.png */; };
+		F5D7B03B24AA600B00BA1C34 /* Pin_Map1.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D7B03A24AA600B00BA1C34 /* Pin_Map1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		F5D7B02B24AA2D0A00BA1C34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5D7B02E24AA2D0A00BA1C34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F5D7B03024AA2D0B00BA1C34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5D7B03824AA5E9300BA1C34 /* Pin_Map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pin_Map.png; sourceTree = "<group>"; };
+		F5D7B03A24AA600B00BA1C34 /* Pin_Map1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pin_Map1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 				F5D7B02624AA2CFE00BA1C34 /* ViewController.swift */,
 				F5D7B02824AA2CFF00BA1C34 /* Main.storyboard */,
 				F5D7B02B24AA2D0A00BA1C34 /* Assets.xcassets */,
+				F5D7B03A24AA600B00BA1C34 /* Pin_Map1.png */,
+				F5D7B03824AA5E9300BA1C34 /* Pin_Map.png */,
 				F5D7B02D24AA2D0A00BA1C34 /* LaunchScreen.storyboard */,
 				F5D7B03024AA2D0B00BA1C34 /* Info.plist */,
 			);
@@ -128,6 +134,8 @@
 				F5D7B02F24AA2D0A00BA1C34 /* LaunchScreen.storyboard in Resources */,
 				F5D7B02C24AA2D0A00BA1C34 /* Assets.xcassets in Resources */,
 				F5D7B02A24AA2CFF00BA1C34 /* Main.storyboard in Resources */,
+				F5D7B03924AA5E9400BA1C34 /* Pin_Map.png in Resources */,
+				F5D7B03B24AA600B00BA1C34 /* Pin_Map1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
